@@ -7,6 +7,5 @@ if [ -z "${1}" ]; then
     exit 1
 fi
 
-openssl enc -d -aes-128-ecb -K "${1}" -in "$encrypt" -out "config.json"
-rm "$encrypt"
+openssl enc -d -aes-128-ecb -K "${1}" -in "$encrypt"
 
