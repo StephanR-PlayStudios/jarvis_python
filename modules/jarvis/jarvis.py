@@ -18,6 +18,7 @@ class Jarvis:
         self.access_token = None
         self.jarvis_environments = list()
         self.jarvis_branches = list()
+        self.data = None
 
     def login_request(self):
         return {
@@ -77,7 +78,12 @@ class Jarvis:
     def data_as_json(self):
         self.get_branches()
         self.get_environments()
-        return json.dumps({
+        self.data = json.dumps({
             "environments": [env.__dict__ for env in self.jarvis_environments],
             "branches": [branch.__dict__ for branch in self.jarvis_branches]
         })
+
+    def refresh(self):
+        self.login()
+        self.data_as_json()
+        return self.data
