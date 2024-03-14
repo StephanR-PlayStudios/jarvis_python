@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import argparse
 import os
 import subprocess
@@ -8,6 +9,9 @@ from modules.jarvis.jarvis import Jarvis
 from modules.utils.config import JarvisConfiguration
 
 if __name__ == "__main__":
+    decrypt_key = os.environ.get("AES_KEY")
+    if not decrypt_key:
+        raise Exception("AES_KEY environment variable not found")
     decrypt_file = subprocess.run(['./bin/decrypt-ebenc.sh', os.environ.get('AES_KEY')],
                                   stdout=subprocess.PIPE,
                                   check=True,
@@ -25,5 +29,6 @@ if __name__ == "__main__":
     jarvis_client = Jarvis(jarvis_configuration)
 
     data = jarvis_client.refresh()
+    print(data)
     
 
