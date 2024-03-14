@@ -16,5 +16,7 @@ pip install -r requirements.txt
 ```
 3. Run the project
 ```bash
-python main.py
+AES_KEY=aes_key ./get_jarvis_data.py
 ```
+
+The output will be a json string in the stdout. You can manipulate it using `jq`.
